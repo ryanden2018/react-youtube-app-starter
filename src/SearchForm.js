@@ -15,7 +15,6 @@ export default class SearchForm extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     this.props.setSearchTerm(this.state.inputField);
-    this.props.searchAPI();
     event.target.reset();
   }
 

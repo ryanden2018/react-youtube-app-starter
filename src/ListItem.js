@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 export default class ListItem extends Component {
-  
+
   render() {
     return (
       <div onClick={() => this.props.getVideo(this.props.item.id.videoId,this.props.item)}>

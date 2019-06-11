@@ -17,16 +17,20 @@ class App extends Component {
 
   setSearchTerm = (term) => {
     if(term.length > 0) {
-      this.setState( { searchTerm: term } );
+      this.setState( { searchTerm: term }, this.searchAPI );
     } else {
-      this.setState( {searchTerm: "yams"} );
+      this.setState( {searchTerm: "yams"}, this.searchAPI );
     }
   }
 
   searchAPI = () => {
     fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&key=${keys.API_KEY}&q=${this.state.searchTerm}&type=video`)
     .then( res => res.json() )
-    .then( data => this.setState({searchResults:data.items}) )
+    .then( data => 
+      this.setState({searchResults:data.items,
+        video:data.items[0],
+      videoId: data.items[0].id.videoId})
+    )
   }
 
   componentDidMount() {
